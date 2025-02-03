@@ -7,6 +7,14 @@ export function ThemeToggle() {
     const [theme, setTheme] = React.useState<"light" | "dark">("light");
 
     React.useEffect(() => {
+        // const savedTheme = localStorage.getItem("theme");
+        // if (savedTheme === "light" || savedTheme === "dark") {
+        //     setTheme(savedTheme);
+        // } else {
+        //     const isDarkMode = document.documentElement.classList.contains("dark");
+        //     setTheme(isDarkMode ? "dark" : "light");
+        // }
+
         const isDarkMode = document.documentElement.classList.contains("dark");
         setTheme(isDarkMode ? "dark" : "light");
     }, []);
@@ -14,6 +22,7 @@ export function ThemeToggle() {
     React.useEffect(() => {
         const isDark = theme === "dark";
         document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+        localStorage.setItem("theme", theme);
     }, [theme]);
 
     return (

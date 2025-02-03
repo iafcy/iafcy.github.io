@@ -14,7 +14,7 @@ export function MobileMenu({ navItems }: NavProps) {
     return (
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger>
-                <Menu />
+                <Menu className="h-[1.2rem] w-[1.2rem]" />
             </DropdownMenuTrigger>
             <DropdownMenuContent side="bottom" align="end">
                 {navItems.map((item) => (
