@@ -8,7 +8,7 @@ export function Contacts() {
             icon: <Mail className="h-7 w-7" />,
         },
         {
-            url: "https://github.com/iafcy622",
+            url: "https://github.com/iafcy",
             icon: <Github className="h-7 w-7" />,
         },
         {
