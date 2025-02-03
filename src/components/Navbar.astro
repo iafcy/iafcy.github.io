@@ -1,0 +1,51 @@
+---
+import { ThemeToggle } from "./ThemeToggle";
+import { MobileMenu } from "./MobileMenu";
+
+const navItems = [
+    {
+        title: "About",
+        path: "/",
+    },
+    {
+        title: "Misc",
+        path: "/misc",
+    },
+    {
+        title: "CV",
+        path: "/cv.pdf",
+    },
+];
+---
+
+<header class="mt-5 mb-12 flex flex-col justify-center items-center">
+    <nav class="flex w-full items-center justify-between">
+        <a href="/"><h1 class="text-2xl font-bold">Yiu Fai CHEUNG</h1></a>
+
+        <!-- Desktop -->
+        <ul class="hidden lg:flex flex-row gap-3 justify-center items-center">
+            {
+                navItems.map((item) => (
+                    <li>
+                        <a
+                            aria-label="navigation link"
+                            href={item.path}
+                            class="flex py-2 lg:px-6"
+                        >
+                            {item.title}
+                        </a>
+                    </li>
+                ))
+            }
+            <ThemeToggle client:load />
+        </ul>
+
+        <!-- Mobile -->
+        <ul
+            class="lg:hidden flex flex-row gap-3 justify-center items-center relative"
+        >
+            <ThemeToggle client:load />
+            <MobileMenu navItems={navItems} client:load />
+        </ul>
+    </nav>
+</header>

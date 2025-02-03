@@ -1,0 +1,46 @@
+---
+import { getCollection, render } from "astro:content";
+import HeadingWithUnderline from "@components/HeadingWithUnderline";
+
+const education = await getCollection("education");
+
+// sort by id for latest event to be on top
+education.sort(function(a, b) { 
+  return - (Number(a.id) - Number(b.id));
+});
+---
+
+<section class="mb-24">
+    <HeadingWithUnderline client:load text="Education" />
+    <div>
+        {
+            education.map(async (event, index) => {
+                const { Content } = await render(event);
+
+                return (
+                    <div class="flex space-x-4 last:mb-0 h-full relative items-stretch mb-2 gap-4">
+                        <div class="w-8 relative">
+                            <div class="w-8 h-8 rounded-full border-8 border-mizugaki" />
+                            <div class="w-px absolute -translate-x-1/2 left-4 top-10 bottom-2 bg-sumi dark:bg-shironeri" />
+                        </div>
+
+                        <div
+                            class={`flex-1 ${index !== education.length - 1 ? "pb-8" : "pb-4"}`}
+                        >
+                            <h3 class="text-2xl font-semibold mb-1">
+                                {event.data.title}
+                            </h3>
+                            <p class="text-xl italic mb-4">
+                                {event.data.location} &#x2015;
+                                {event.data.duration}
+                            </p>
+                            <div class="md">
+                                <Content />
+                            </div>
+                        </div>
+                    </div>
+                );
+            })
+        }
+    </div>
+</section>

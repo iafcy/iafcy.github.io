@@ -1,0 +1,9 @@
+---
+import type { HTMLAttributes } from "astro/types";
+interface Props extends HTMLAttributes<"ol"> {}
+const { ...props } = Astro.props;
+---
+
+<ol class="list-decimal my-3" {...props}>
+    <slot />
+</ol>

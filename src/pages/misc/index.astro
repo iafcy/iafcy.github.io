@@ -1,0 +1,36 @@
+---
+import "../../../styles/globals.css";
+
+import { Image } from "astro:assets";
+
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { Content } from "@content/misc.mdx"
+import mdComponent from "@components/md/components";
+
+const images = await getCollection('images');
+---
+
+<Layout>
+    <div class="mb-8">
+        <Content components={mdComponent} />
+    </div>
+
+    <div
+        class="columns-1 gap-8 sm:columns-2 sm:gap-8 md:columns-2 lg:columns-3 [&>div:not(:first-child)]:mt-8"
+    >
+        {
+            images.map(({ data }) => (
+                <div class="relative overflow-hidden bg-cover bg-no-repeat object-contain h-full rounded-lg">
+                    <Image
+                        class="transition duration-300 ease-in-out hover:scale-110 object-contain h-full rounded-lg hover:opacity-75"
+                        src={data.src}
+                        alt={data.alt}
+                        loading="lazy"
+                        width="720"
+                    />
+                </div>
+            ))
+        }
+    </div>
+</Layout>

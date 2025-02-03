@@ -1,0 +1,27 @@
+---
+import Navbar from "@components/Navbar.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Cheung Yiu Fai</title>
+    </head>
+    <body
+        class="mt-6 mb-12 mx-auto max-w-[85rem] w-10/12 md:w-9/12 xl:w-7/12 bg-shironeri text-kuro font-sans xs:text-[16px] md:text-[18px] dark:bg-sumi dark:text-shironeri transition-all relative"
+    >
+        <Navbar />
+        <main>
+            <slot />
+        </main>
+    </body>
+</html>
+
+<style is:global>
+    img {
+        content-visibility: auto;
+    }
+</style>
