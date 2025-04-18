@@ -4,7 +4,7 @@ import { Mail, Github, Linkedin, GraduationCap } from "lucide-react";
 export function Contacts() {
     const contacts = [
         {
-            url: "mailto:1155192670@link.cuhk.edu.hk",
+            url: "mailto:yfcheung2@cse.cuhk.edu.hk",
             icon: <Mail className="h-7 w-7" />,
         },
         {
