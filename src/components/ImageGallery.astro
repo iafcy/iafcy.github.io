@@ -1,0 +1,53 @@
+---
+import { Image, getImage } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const images = await getCollection("images");
+---
+
+<div
+    id="gallery"
+    class="columns-1 gap-8 sm:columns-2 sm:gap-8 md:columns-2 lg:columns-3 [&>div:not(:first-child)]:mt-8"
+>
+    {
+        images.map(async ({ data }) => {
+            const optimizedImage = await getImage({
+                src: data.src,
+                format: "webp",
+                width: 1920,
+            });
+
+            return (
+                <div class="relative overflow-hidden bg-cover bg-no-repeat object-contain h-full rounded-lg">
+                    <a
+                        href={optimizedImage.src}
+                        data-pswp-width={optimizedImage.attributes.width}
+                        data-pswp-height={optimizedImage.attributes.height}
+                        target="_blank"
+                    >
+                        <Image
+                            src={data.src}
+                            alt={data.alt}
+                            width={480}
+                            class="transition duration-300 ease-in-out hover:scale-110 object-contain h-full rounded-lg hover:opacity-75"
+                        />
+                    </a>
+                </div>
+            );
+        })
+    }
+</div>
+
+<script>
+    import PhotoSwipeLightbox from "photoswipe/lightbox";
+    import "photoswipe/style.css";
+
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: "#gallery",
+        children: "a",
+        pswpModule: () => import("photoswipe"),
+    });
+
+    lightbox.init();
+    document.addEventListener("astro:after-swap", () => lightbox.init());
+</script>
