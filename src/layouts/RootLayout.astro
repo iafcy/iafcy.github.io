@@ -1,7 +1,7 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import { fade } from 'astro:transitions';
-import Navbar from "@components/Navbar.astro";
+import { ClientRouter } from "astro:transitions";
+
+const { class: className } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,19 +14,20 @@ import Navbar from "@components/Navbar.astro";
         <ClientRouter />
     </head>
     <body
-        class="mt-6 mb-12 mx-auto max-w-[85rem] w-10/12 md:w-9/12 xl:w-7/12 bg-shironeri text-kuro font-sans xs:text-[16px] md:text-[18px] dark:bg-sumi dark:text-shironeri transition-all relative"
+        class:list={[
+            "bg-shironeri text-kuro font-sans xs:text-[16px] md:text-[18px] dark:bg-sumi dark:text-shironeri transition-all relative",
+            className,
+        ]}
     >
-        <Navbar />
-        <main transition:animate={fade({ duration: '0.5s' })}>
-            <slot />
-        </main>
+        <slot />
 
         <script>
             function colorTheme() {
                 if (
                     localStorage.theme == "dark" ||
                     (!("theme" in localStorage) &&
-                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+                        window.matchMedia("(prefers-color-scheme: dark)")
+                            .matches)
                 ) {
                     document.documentElement.classList.add("dark");
                 } else {

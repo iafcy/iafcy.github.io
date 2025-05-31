@@ -3,15 +3,15 @@ import "../../../styles/globals.css";
 
 import { Image } from "astro:assets";
 
-import Layout from "../../layouts/Layout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
-import { Content } from "@content/misc.mdx"
+import { Content } from "@content/misc.mdx";
 import mdComponent from "@components/md/components";
 
-const images = await getCollection('images');
+const images = await getCollection("images");
 ---
 
-<Layout>
+<MainLayout>
     <div class="mb-8">
         <Content components={mdComponent} />
     </div>
@@ -33,4 +33,4 @@ const images = await getCollection('images');
             ))
         }
     </div>
-</Layout>
+</MainLayout>

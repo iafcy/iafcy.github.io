@@ -1,0 +1,14 @@
+---
+import RootLayout from "./RootLayout.astro";
+import { fade } from "astro:transitions";
+import Navbar from "@components/Navbar.astro";
+---
+
+<RootLayout
+    class="mt-6 mb-12 mx-auto max-w-[85rem] w-10/12 md:w-9/12 xl:w-7/12"
+>
+    <Navbar />
+    <main transition:animate={fade({ duration: "0.5s" })}>
+        <slot />
+    </main>
+</RootLayout>
