@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import myImage from "@assets/myself.png";
+import myImage from "@assets/myself2.png";
 
 import { Contacts } from "@components/Contacts";
 import mdComponent from "@components/md/components";
 
-import { Content } from "@content/intro.mdx"
+import { Content } from "@content/intro.mdx";
 ---
 
 <section class="block mb-24 lg:flex lg:items-center">
@@ -17,7 +17,7 @@ import { Content } from "@content/intro.mdx"
         />
         <Contacts />
     </div>
-    <div class="mt-4">
+    <div class="mt-4 lg:mt-0">
         <Content components={mdComponent} />
     </div>
 </section>

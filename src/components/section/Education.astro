@@ -5,8 +5,8 @@ import HeadingWithUnderline from "@components/HeadingWithUnderline";
 const education = await getCollection("education");
 
 // sort by id for latest event to be on top
-education.sort(function(a, b) { 
-  return - (Number(a.id) - Number(b.id));
+education.sort(function (a, b) {
+    return -(Number(a.id) - Number(b.id));
 });
 ---
 
@@ -20,8 +20,8 @@ education.sort(function(a, b) {
                 return (
                     <div class="flex space-x-4 last:mb-0 h-full relative items-stretch mb-2 gap-4">
                         <div class="w-8 relative">
-                            <div class="w-8 h-8 rounded-full border-8 border-mizugaki" />
-                            <div class="w-px absolute -translate-x-1/2 left-4 top-10 bottom-2 bg-sumi dark:bg-shironeri" />
+                            <div class="w-8 h-8 rounded-full border-[10px] border-mizugaki" />
+                            <div class="w-[2px] absolute -translate-x-1/2 left-4 top-10 bottom-2 bg-sumi dark:bg-shironeri" />
                         </div>
 
                         <div
