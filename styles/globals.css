@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-  :root {
-    --radius: 0.5rem
-  }
+    :root {
+        --radius: 0.5rem;
+    }
 }
 
 .md ul {
-  @apply list-disc pl-6;
+    @apply list-disc pl-6;
 }
