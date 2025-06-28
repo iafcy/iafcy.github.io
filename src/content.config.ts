@@ -13,7 +13,7 @@ const images = defineCollection({
 });
 
 const research = defineCollection({
-    loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/research" }),
+    loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/research" }),
     schema: z.object({
         title: z.string(),
         location: z.string(),
@@ -22,7 +22,7 @@ const research = defineCollection({
 });
 
 const education = defineCollection({
-    loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/education" }),
+    loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/education" }),
     schema: z.object({
         title: z.string(),
         location: z.string(),
@@ -31,7 +31,7 @@ const education = defineCollection({
 });
 
 const experience = defineCollection({
-    loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/experience" }),
+    loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/experience" }),
     schema: ({ image }) =>
         z.object({
             title: z.string(),

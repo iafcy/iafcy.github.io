@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import HeadingWithUnderline from "@components/HeadingWithUnderline";
+import mdComponent from "@components/md/components";
 
 const experience = await getCollection("experience");
 
@@ -39,7 +40,7 @@ experience.sort(function (a, b) {
                                 {event.data.duration}
                             </p>
                             <div class="md">
-                                <Content />
+                                <Content components={mdComponent} />
                             </div>
                         </div>
                     </div>

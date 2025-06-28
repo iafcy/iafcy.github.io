@@ -11,6 +11,7 @@ import Strong from "./Strong.astro";
 import OrderedList from "./OrderedList.astro";
 import UnorderedList from "./UnorderedList.astro";
 import ListItem from "./ListItem.astro";
+import Anchor from "./Anchor.astro";
 
 const mdComponents = {
   h1: H1,
@@ -26,6 +27,7 @@ const mdComponents = {
   ol: OrderedList,
   ul: UnorderedList,
   li: ListItem,
+  a: Anchor,
 };
 
 export default mdComponents;
