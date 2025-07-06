@@ -1,8 +1,117 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import HeadingWithUnderline from "@components/HeadingWithUnderline";
+import YearHeading from "@components/YearHeading";
+
+import { File, Code, Link } from "lucide-react";
+
+const NAME = "Yiu Fai Cheung";
+
+type PublicationData = CollectionEntry<"publications">["data"];
+type PublicationsByYear = Record<number, PublicationData[]>;
+
+const publications = await getCollection("publications");
+const publicationsByYear = publications.reduce<PublicationsByYear>(
+    (groups, { data }) => {
+        const year = data.year;
+
+        if (!groups[year]) groups[year] = [];
+
+        groups[year].push(data);
+        return groups;
+    },
+    {}
+);
+
+const years = Object.keys(publicationsByYear)
+    .map(Number)
+    .sort((a, b) => b - a);
 ---
 
 <section class="mb-24">
     <HeadingWithUnderline client:load text="Publications" />
-    <p>Unfortunaly, I don't have any yet...</p>
+
+    {
+        years.map((year) => (
+            <div class="mb-12">
+                <YearHeading client:load year={year} />
+
+                <ul>
+                    {publicationsByYear[year].map((data) => {
+                        const authors = data.authors
+                            .split(",")
+                            .map((author) => {
+                                const trimmedAuthor = author.trim();
+                                return trimmedAuthor === NAME ? (
+                                    <strong class="font-bold">
+                                        {trimmedAuthor}
+                                    </strong>
+                                ) : (
+                                    trimmedAuthor
+                                );
+                            })
+                            .reduce((prev, curr, index) => [
+                                prev,
+                                index > 0 ? ", " : "",
+                                curr,
+                            ]);
+
+                        return (
+                            <li class="sm:grid sm:grid-cols-4 gap-6 mb-8 items-center">
+                                <Image
+                                    src={data.image}
+                                    alt="pub"
+                                    class="col-span-1 hidden sm:block"
+                                />
+                                <div class="sm:col-span-3 flex flex-col gap-2">
+                                    <h3 class="text-xl font-bold">
+                                        {data.title}
+                                    </h3>
+                                    <p>{authors}</p>
+                                    <p>{data.venue}</p>
+                                    {data.award && (
+                                        <p class="font-bold">{data.award}</p>
+                                    )}
+
+                                    <div class="flex gap-8 items-center mt-2">
+                                        {data.links?.paper && (
+                                            <a
+                                                href={data.links.paper}
+                                                class="flex items-center gap-2"
+                                            >
+                                                <File className="h-5 w-5" />
+                                                Paper
+                                            </a>
+                                        )}
+
+                                        {data.links?.code && (
+                                            <a
+                                                href={data.links.code}
+                                                class="flex items-center gap-2"
+                                            >
+                                                <Code className="h-5 w-5" />
+                                                Code
+                                            </a>
+                                        )}
+
+                                        {data.links?.website && (
+                                            <a
+                                                href={data.links.website}
+                                                class="flex items-center gap-2"
+                                            >
+                                                <Link className="h-5 w-5" />
+                                                Website
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+        ))
+    }
 </section>

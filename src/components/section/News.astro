@@ -1,0 +1,18 @@
+---
+import mdComponent from "@components/md/components";
+
+import HeadingWithUnderline from "@components/HeadingWithUnderline";
+import ShowMoreNewsBtn from "@components/ShowMoreNewsBtn.astro";
+
+import { Content } from "@content/news.mdx";
+---
+
+<section class="mb-24">
+    <HeadingWithUnderline client:load text="News" />
+
+    <div id="news-list" class="mt-4 lg:mt-0">
+        <Content components={mdComponent} />
+    </div>
+
+    <ShowMoreNewsBtn transition:persist />
+</section>

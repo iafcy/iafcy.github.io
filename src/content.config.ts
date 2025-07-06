@@ -49,4 +49,25 @@ const awards = defineCollection({
     }),
 });
 
-export const collections = { images, research, education, experience, awards };
+const publications = defineCollection({
+    loader: file("src/content/data/publications.json"),
+    schema: ({ image }) => 
+        z.object({
+            id: z.string(),
+            title: z.string(),
+            authors: z.string(),
+            year: z.number(),
+            venue: z.string(),
+            image: image(),
+            award: z.string().optional(),
+            links: z
+                .object({
+                    paper: z.string().url().optional(),
+                    code: z.string().url().optional(),
+                    website: z.string().url().optional(),
+                })
+                .optional(),
+        }),
+});
+
+export const collections = { images, research, education, experience, awards, publications };

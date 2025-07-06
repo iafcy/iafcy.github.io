@@ -1,0 +1,16 @@
+[
+    {
+        "id": "template2025",
+        "title": "",
+        "authors": "",
+        "year": 2025,
+        "venue": "",
+        "image": "../../assets/publications/",
+        "links": {
+            "paper": "https://arxiv.org/",
+            "website": "https://arxiv.org/",
+            "code": "https://arxiv.org/"
+        },
+        "award": "🏆"
+    }
+]

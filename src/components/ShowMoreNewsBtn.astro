@@ -1,0 +1,43 @@
+<div id="show-more-container" class="mt-6 text-center">
+    <button
+        id="show-more-btn"
+        class="bg-mizugaki text-white font-medium py-2 px-4 rounded transition"
+    >
+        Show More
+    </button>
+</div>
+
+<script>
+    const MAX_N = 5;
+
+    document.addEventListener("astro:page-load", () => {
+        console.log('hi')
+        const button = document.getElementById("show-more-btn");
+        const container = document.getElementById("news-list");
+
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("transition-all", "overflow-hidden");
+        wrapper.style.maxHeight = "0";
+
+        const items = container ? container.querySelectorAll("li") : [];
+        const hiddenItems = items ? Array.from(items)?.slice(MAX_N) : [];
+
+        hiddenItems[0]?.parentNode?.insertBefore(wrapper, hiddenItems[0]);
+
+        hiddenItems.forEach((item) => {
+            wrapper.appendChild(item);
+        });
+
+        button?.addEventListener("click", () => {
+            const isShowingMore = button.textContent === "Show More";
+
+            if (isShowingMore) {
+                wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+                button.textContent = "Show Less";
+            } else {
+                wrapper.style.maxHeight = "0";
+                button.textContent = "Show More";
+            }
+        });
+    });
+</script>
