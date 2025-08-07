@@ -49,6 +49,20 @@ const awards = defineCollection({
     }),
 });
 
+// {
+//     "id": "template2025",
+//     "title": "",
+//     "authors": "",
+//     "year": 2025,
+//     "venue": "",
+//     "image": "../../assets/publications/",
+//     "links": {
+//         "paper": "https://arxiv.org/",
+//         "website": "https://arxiv.org/",
+//         "code": "https://arxiv.org/"
+//     },
+//     "award": "🏆"
+// }
 const publications = defineCollection({
     loader: file("src/content/data/publications.json"),
     schema: ({ image }) => 

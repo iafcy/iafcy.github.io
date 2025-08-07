@@ -1,16 +1,13 @@
 [
     {
-        "id": "template2025",
-        "title": "",
-        "authors": "",
+        "id": "ma2025rethinkingmedicalbenchmarks",
+        "title": "Beyond the Leaderboard: Rethinking Medical Benchmarks for Large Language Models",
+        "authors": "Zizhan Ma, Wenxuan Wang, Guo Yu, Yiu-Fai Cheung, Meidan Ding, Jie Liu, Wenting Chen, Linlin Shen",
         "year": 2025,
-        "venue": "",
-        "image": "../../assets/publications/",
+        "venue": "arXiv",
+        "image": "../../assets/publications/ma2025rethinkingmedicalbenchmarks.webp",
         "links": {
-            "paper": "https://arxiv.org/",
-            "website": "https://arxiv.org/",
-            "code": "https://arxiv.org/"
-        },
-        "award": "🏆"
+            "paper": "https://arxiv.org/abs/2508.04325"
+        }
     }
 ]

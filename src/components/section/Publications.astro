@@ -7,7 +7,7 @@ import YearHeading from "@components/YearHeading";
 
 import { File, Code, Link } from "lucide-react";
 
-const NAME = "Yiu Fai Cheung";
+const NAME = "Yiu-Fai Cheung";
 
 type PublicationData = CollectionEntry<"publications">["data"];
 type PublicationsByYear = Record<number, PublicationData[]>;
@@ -45,9 +45,7 @@ const years = Object.keys(publicationsByYear)
                             .map((author) => {
                                 const trimmedAuthor = author.trim();
                                 return trimmedAuthor === NAME ? (
-                                    <strong class="font-bold">
-                                        {trimmedAuthor}
-                                    </strong>
+                                    <strong class="font-bold">{trimmedAuthor}</strong>
                                 ) : (
                                     trimmedAuthor
                                 );
@@ -59,13 +57,13 @@ const years = Object.keys(publicationsByYear)
                             ]);
 
                         return (
-                            <li class="sm:grid sm:grid-cols-4 gap-6 mb-8 items-center">
+                            <li id={data.id} class="sm:grid sm:grid-cols-3 gap-6 mb-8 items-center scroll-mt-24">
                                 <Image
                                     src={data.image}
                                     alt="pub"
                                     class="col-span-1 hidden sm:block"
                                 />
-                                <div class="sm:col-span-3 flex flex-col gap-2">
+                                <div class="sm:col-span-2 flex flex-col gap-2">
                                     <h3 class="text-xl font-bold">
                                         {data.title}
                                     </h3>
