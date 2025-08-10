@@ -1,11 +1,10 @@
-import * as React from "react";
 import { Mail, Github, Linkedin, GraduationCap } from "lucide-react";
 
 export function Contacts() {
     const contacts = [
         {
-            url: "mailto:yfcheung2@cse.cuhk.edu.hk",
-            icon: <Mail className="h-7 w-7" />,
+            url: "https://scholar.google.com/citations?hl=en&user=MJ4E5ykAAAAJ",
+            icon: <GraduationCap className="h-7 w-7" />
         },
         {
             url: "https://github.com/iafcy",
@@ -14,6 +13,10 @@ export function Contacts() {
         {
             url: "https://linkedin.com/in/yiu-fai-cheung",
             icon: <Linkedin className="h-7 w-7" />,
+        },
+        {
+            url: "mailto:yfcheung2@cse.cuhk.edu.hk",
+            icon: <Mail className="h-7 w-7" />,
         },
     ];
 
