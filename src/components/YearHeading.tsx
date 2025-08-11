@@ -9,7 +9,7 @@ export default function YearHeading({ year }: { year: number }) {
     }, []);
 
     const StaticLine = () => (
-        <span className="flex-1 h-px bg-sumi dark:bg-shironeri" />
+        <span className="flex-1 h-px bg-sumi dark:bg-shironeri  opacity-50" />
     );
 
     return (
@@ -21,7 +21,7 @@ export default function YearHeading({ year }: { year: number }) {
                     exit={{ scaleX: 0 }}
                     transition={{ duration: 0.75, ease: "circInOut" }}
                     viewport={{ amount: 0.5 }}
-                    className="flex-1 h-px bg-sumi dark:bg-shironeri origin-right"
+                    className="flex-1 h-px bg-sumi dark:bg-shironeri origin-right opacity-50"
                 />
             ) : (
                 <StaticLine />
@@ -36,7 +36,7 @@ export default function YearHeading({ year }: { year: number }) {
                     exit={{ scaleX: 0 }}
                     transition={{ duration: 0.75, ease: "circInOut" }}
                     viewport={{ amount: 0.5 }}
-                    className="flex-1 h-px bg-sumi dark:bg-shironeri origin-left"
+                    className="flex-1 h-px bg-sumi dark:bg-shironeri origin-left opacity-50"
                 />
             ) : (
                 <StaticLine />
