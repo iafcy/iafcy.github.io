@@ -28,8 +28,9 @@ const images = await getCollection("images");
                         <Image
                             src={data.src}
                             alt={data.alt}
-                            width={480}
-                            client:visible
+                            width={360}
+                            decoding="async"
+                            loading="lazy"
                             class="transition duration-300 ease-in-out hover:scale-110 object-contain h-full rounded-lg hover:opacity-75"
                         />
                     </a>
@@ -49,6 +50,6 @@ const images = await getCollection("images");
         pswpModule: () => import("photoswipe"),
     });
 
-    lightbox.init();
-    document.addEventListener("astro:after-swap", () => lightbox.init());
+    document.addEventListener("astro:page-load", () => lightbox.init());
+    document.addEventListener("astro:before-swap", () => lightbox.destroy());
 </script>
