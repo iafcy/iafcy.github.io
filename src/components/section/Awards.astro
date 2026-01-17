@@ -8,10 +8,18 @@ const awards = await getCollection('awards');
 <section class="mb-24">
     <HeadingWithUnderline client:load text="Awards" />
     
-    <ul class="list-disc pl-6">
+    <ul>
         {
             awards.map(({data}) => (
-                <li>{data.name}</li>
+                <li class="mb-2 flex flex-row gap-4 items-start">
+                    <div class="min-w-24 bg-mizugaki/50 dark:bg-mizugaki/70 rounded-sm px-0.5 text-center">{data.year}</div>
+                    <div>
+                        <p>{data.name}</p>
+                        {data.description !== "" && (
+                            <p class="italic">({data.description})</p>
+                        )}
+                    </div>
+                </li>
             ))
         }
     </ul>

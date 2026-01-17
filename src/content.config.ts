@@ -45,7 +45,9 @@ const awards = defineCollection({
     loader: file("src/content/data/awards.json"),
     schema: z.object({
         id: z.number(),
+        year: z.string(),
         name: z.string(),
+        description: z.string(),
     }),
 });
 
