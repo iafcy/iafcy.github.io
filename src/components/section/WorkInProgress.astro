@@ -1,0 +1,48 @@
+---
+import { getCollection, render } from "astro:content";
+import HeadingWithUnderline from "@components/HeadingWithUnderline";
+import mdComponent from "@components/md/components";
+import { MapPin } from "lucide-react";
+
+const research = await getCollection("workInProgress");
+
+// sort by id for latest event to be on top
+research.sort(function(a, b) { 
+  return - (Number(a.id) - Number(b.id));
+});
+---
+
+<section class="mb-24">
+    <HeadingWithUnderline client:load text="Work in progress" />
+
+    <div class="grid gap-6">
+        {
+            research.map(async (event, index) => {
+                const { Content } = await render(event);
+                
+                return (
+                    <div id={`wip-${index}`}>
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                            <div>
+                                <h3 class="text-xl font-bold">
+                                    {event.data.title}
+                                </h3>
+                                <p class="text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-2">
+                                    <MapPin className="h-4 w-4" />
+                                    {event.data.location}
+                                </p>
+                            </div>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-mizugaki/10 text-mizugaki border border-mizugaki/20 shadow-sm whitespace-nowrap tracking-wider self-start">
+                                {event.data.duration}
+                            </span>
+                        </div>
+
+                        <div class="md">
+                            <Content components={mdComponent} />
+                        </div>
+                    </div>
+                );
+            })
+        }
+    </div>
+</section>

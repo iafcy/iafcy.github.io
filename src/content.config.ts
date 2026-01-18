@@ -21,6 +21,15 @@ const research = defineCollection({
     }),
 });
 
+const workInProgress = defineCollection({
+    loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/wip" }),
+    schema: z.object({
+        title: z.string(),
+        location: z.string(),
+        duration: z.string(),
+    }),
+});
+
 const education = defineCollection({
     loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/education" }),
     schema: z.object({
@@ -86,4 +95,4 @@ const publications = defineCollection({
         }),
 });
 
-export const collections = { images, research, education, experience, awards, publications };
+export const collections = { images, research, workInProgress, education, experience, awards, publications };
