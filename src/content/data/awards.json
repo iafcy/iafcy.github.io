@@ -3,48 +3,48 @@
         "id": 8,
         "year": "2023-24",
         "name": "ELITE Stream Scholarship",
-        "description": ""
+        "description": "Faculty of Engineering, CUHK"
     },
     {
         "id": 7,
         "year": "2022-25",
-        "name": "Dean’s list, Faculty of Engineering, CUHK",
-        "description": ""
+        "name": "Dean’s list",
+        "description": "Faculty of Engineering, CUHK"
     },
     {
         "id": 6,
         "year": "2022-24",
-        "name": "Head’s List, New Asia College, CUHK",
-        "description": ""
+        "name": "Head’s List",
+        "description": "New Asia College, CUHK"
     },
     {
         "id": 5,
         "year": "2023",
         "name": "Mr. Kenneth Leung Memorial Scholarship",
-        "description": ""
+        "description": "New Asia College, CUHK"
     },
     {
         "id": 4,
         "year": "2023",
         "name": "Store Friendly Charity Foundation Admission Scholarship for the Faculty of Engineering",
-        "description": ""
+        "description": "New Asia College, CUHK"
     },
     {
         "id": 3,
         "year": "2022",
         "name": "Faculty of Engineering Admission Scholarships for New Students",
-        "description": ""
+        "description": "Faculty of Engineering, CUHK"
     },
     {
         "id": 2,
         "year": "2022",
         "name": "CUHK Admission Scholarship",
-        "description": ""
+        "description": "CUHK"
     },
     {
         "id": 1,
         "year": "2022",
         "name": "Scholarship for Family Members of Registered Construction Workers",
-        "description": ""
+        "description": "Construction Industry Council (Hong Kong)"
     }
 ]

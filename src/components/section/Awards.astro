@@ -11,12 +11,17 @@ const awards = await getCollection('awards');
     <ul>
         {
             awards.map(({data}) => (
-                <li class="mb-2 flex flex-row gap-4 items-start">
-                    <div class="min-w-24 bg-mizugaki/50 dark:bg-mizugaki/70 rounded-sm px-0.5 text-center">{data.year}</div>
+                <li class="mb-4 flex flex-row gap-4 items-start"> {/* items-center aligns year with first line of text */}
+                    <div class="min-w-[6.5rem] shrink-0 flex justify-center">
+                        <span class="w-full bg-mizugaki/10 text-mizugaki dark:text-mizugaki/90 border border-mizugaki/20 px-3 py-1 rounded-full text-xs font-bold tracking-wider shadow-sm text-center">
+                            {data.year}
+                        </span>
+                    </div>
+                    
                     <div>
-                        <p>{data.name}</p>
-                        {data.description !== "" && (
-                            <p class="italic">({data.description})</p>
+                        <h3>{data.name}</h3>
+                        {data.description && (
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{data.description}</p>
                         )}
                     </div>
                 </li>
