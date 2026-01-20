@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import HeadingWithUnderline from "@components/HeadingWithUnderline";
+import HeadingWithUnderline from "@components/HeadingWithUnderline.astro";
 import mdComponent from "@components/md/components";
 import { MapPin } from "lucide-react";
 
@@ -13,7 +13,7 @@ research.sort(function(a, b) {
 ---
 
 <section class="mb-24">
-    <HeadingWithUnderline client:load text="Research experiences" />
+    <HeadingWithUnderline text="Research experiences" />
 
     {
         research.map(async (event, index) => {

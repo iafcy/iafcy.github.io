@@ -18,7 +18,7 @@ export function MobileMenu({ navItems }: NavProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent side="bottom" align="end">
                 {navItems.map((item) => (
-                    <DropdownMenuItem key={item.title}>
+                    <DropdownMenuItem key={item.title} asChild>
                         <a href={item.path}>{item.title}</a>
                     </DropdownMenuItem>
                 ))}

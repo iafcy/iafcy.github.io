@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content";
-import HeadingWithUnderline from "@components/HeadingWithUnderline";
+import HeadingWithUnderline from "@components/HeadingWithUnderline.astro";
 
 const awards = await getCollection('awards');
 ---
 
 <section class="mb-24">
-    <HeadingWithUnderline client:load text="Awards" />
+    <HeadingWithUnderline text="Awards" />
     
     <ul>
         {

@@ -2,8 +2,8 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import HeadingWithUnderline from "@components/HeadingWithUnderline";
-import YearHeading from "@components/YearHeading";
+import HeadingWithUnderline from "@components/HeadingWithUnderline.astro";
+import YearHeading from "@components/YearHeading.astro";
 
 import { File, Code, Link } from "lucide-react";
 
@@ -31,12 +31,12 @@ const years = Object.keys(publicationsByYear)
 ---
 
 <section class="mb-24">
-    <HeadingWithUnderline client:load text="Publications" />
+    <HeadingWithUnderline text="Publications" />
 
     {
         years.map((year) => (
             <div class="mb-12">
-                <YearHeading client:load year={year} />
+                <YearHeading year={year} />
 
                 <ul>
                     {publicationsByYear[year].map((data) => {

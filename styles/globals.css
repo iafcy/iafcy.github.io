@@ -7,6 +7,53 @@
     }
 }
 
+@layer components {
+    .heading-underline__bar {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    .year-line {
+        transform: scaleX(0);
+    }
+
+    .year-line--right {
+        transform-origin: right;
+    }
+
+    .year-line--left {
+        transform-origin: left;
+    }
+}
+
+[data-animate="underline"].animate-in {
+    animation: heading-underline 0.75s ease-in-out forwards;
+}
+
+[data-animate="year-line"].animate-in {
+    animation: year-line 0.75s ease-in-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .heading-underline__bar,
+    .year-line {
+        animation: none;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes heading-underline {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes year-line {
+    to {
+        transform: scaleX(1);
+    }
+}
+
 .md ul {
     @apply list-disc pl-6;
 }
