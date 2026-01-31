@@ -1,5 +1,11 @@
 [
     {
+        "id": 9,
+        "year": "2026",
+        "name": "Professor Charles K. Kao Research Exchange Scholarship",
+        "description": "CUHK (Around 7 students of the Faculty of Engineering are awarded each year)"
+    },
+    {
         "id": 8,
         "year": "2023-24",
         "name": "ELITE Stream Scholarship",
