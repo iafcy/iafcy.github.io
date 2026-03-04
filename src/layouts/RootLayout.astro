@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import "lenis/dist/lenis.css";
 
 const { class: className } = Astro.props;
 ---
@@ -29,6 +30,17 @@ const { class: className } = Astro.props;
         <slot />
 
         <script>
+            import Lenis from "lenis";
+
+            const lenis = new Lenis({
+                autoRaf: true,
+                anchors: {
+                    offset: -25,
+                },
+                lerp: 0.125,
+                duration: 1.1,
+            });
+
             function colorTheme() {
                 if (
                     localStorage.theme == "dark" ||
