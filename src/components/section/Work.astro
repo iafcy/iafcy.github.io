@@ -16,7 +16,7 @@ experience.sort(function (a, b) {
 <section class="mb-24">
     <HeadingWithUnderline text="Work Experiences" />
 
-    <div class="grid gap-8">
+    <div class="grid gap-6">
         {
             experience.map(async (event, index) => {
                 const { Content } = await render(event);
@@ -39,7 +39,7 @@ experience.sort(function (a, b) {
                                     <h3 class="text-xl font-bold">
                                         {event.data.title}
                                     </h3>
-                                    <p class="text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-2">
+                                    <p class="text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-2 text-base">
                                         <MapPin className="h-4 w-4 shrink-0" />
                                         {event.data.location}
                                     </p>
