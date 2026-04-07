@@ -4,10 +4,10 @@
         "title": "Beyond the Leaderboard: Rethinking Medical Benchmarks for Large Language Models",
         "authors": "Zizhan Ma, Wenxuan Wang, Guo Yu, Yiu-Fai Cheung, Meidan Ding, Jie Liu, Wenting Chen, Linlin Shen",
         "year": 2025,
-        "venue": "arXiv",
+        "venue": "ACL Main Conference, 2026",
         "image": "../../assets/publications/ma2025rethinkingmedicalbenchmarks.webp",
         "links": {
-            "paper": "https://arxiv.org/abs/2508.04325"
+            "arxiv": "https://arxiv.org/abs/2508.04325"
         }
     }
 ]

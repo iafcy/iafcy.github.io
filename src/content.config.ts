@@ -87,6 +87,7 @@ const publications = defineCollection({
             award: z.string().optional(),
             links: z
                 .object({
+                    arxiv: z.string().url().optional(),
                     paper: z.string().url().optional(),
                     code: z.string().url().optional(),
                     website: z.string().url().optional(),

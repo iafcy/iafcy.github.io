@@ -6,6 +6,7 @@ import HeadingWithUnderline from "@components/HeadingWithUnderline.astro";
 import YearHeading from "@components/YearHeading.astro";
 
 import { File, Code, Link } from "lucide-react";
+import { Icon } from 'astro-icon/components'
 
 const NAME = "Yiu-Fai Cheung";
 
@@ -76,6 +77,16 @@ const years = Object.keys(publicationsByYear)
                                     )}
 
                                     <div class="flex gap-8 items-center mt-2">
+                                        {data.links?.arxiv && (
+                                            <a
+                                                href={data.links.arxiv}
+                                                class="flex items-center gap-2"
+                                            >
+                                                <Icon name="arxiv" class="h-5 w-5 grayscale-[80%]" />
+                                                arXiv
+                                            </a>
+                                        )}
+
                                         {data.links?.paper && (
                                             <a
                                                 href={data.links.paper}
