@@ -45,7 +45,7 @@ const years = Object.keys(publicationsByYear)
                             .split(",")
                             .map((author) => {
                                 const trimmedAuthor = author.trim();
-                                return trimmedAuthor === NAME ? (
+                                return (trimmedAuthor === NAME || trimmedAuthor === NAME + "*" || trimmedAuthor === NAME + "†") ? (
                                     <strong class="font-bold">{trimmedAuthor}</strong>
                                 ) : (
                                     trimmedAuthor
@@ -71,7 +71,7 @@ const years = Object.keys(publicationsByYear)
                                         {data.title}
                                     </h3>
                                     <p>{authors}</p>
-                                    <p>{data.venue}</p>
+                                    <p class="italic">{data.venue}</p>
                                     {data.award && (
                                         <p class="font-bold">{data.award}</p>
                                     )}

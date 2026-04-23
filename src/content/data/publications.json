@@ -1,8 +1,17 @@
 [
     {
+        "id": "cheung2026mentalmeta",
+        "title": "The Efficacy of Large Language Model-based Interventions for Mental Health Outcomes: A Systematic Review and Meta-Analysis",
+        "authors": "Yiu-Fai Cheung*, Chenxu Yu*, Kao-Jung Chang*, Guozheng Wu, Hsin-Yu Wu, Yu-Tien Hsu, Xinjie Zhang, Wei Chiu, Yu-Chieh Ko, Albert C. Yang, Wenxuan Wang†, Qin Jin†, Wenting Chen†",
+        "year": 2026,
+        "venue": "Submitted to Nature Human Behavior",
+        "image": "../../assets/publications/cheung2026psycmeta.webp",
+        "links": {}
+    },
+    {
         "id": "ma2025rethinkingmedicalbenchmarks",
         "title": "Beyond the Leaderboard: Rethinking Medical Benchmarks for Large Language Models",
-        "authors": "Zizhan Ma, Wenxuan Wang, Guo Yu, Yiu-Fai Cheung, Meidan Ding, Jie Liu, Wenting Chen, Linlin Shen",
+        "authors": "Wenting Chen, Guo Yu, Yiu-Fai Cheung, Meidan Ding, Jie Liu, Zizhan Ma†, Wenxuan Wang, Linlin Shen",
         "year": 2025,
         "venue": "ACL Main Conference, 2026",
         "image": "../../assets/publications/ma2025rethinkingmedicalbenchmarks.webp",
