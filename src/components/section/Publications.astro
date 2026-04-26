@@ -45,10 +45,26 @@ const years = Object.keys(publicationsByYear)
                             .split(",")
                             .map((author) => {
                                 const trimmedAuthor = author.trim();
-                                return (trimmedAuthor === NAME || trimmedAuthor === NAME + "*" || trimmedAuthor === NAME + "†") ? (
-                                    <strong class="font-bold">{trimmedAuthor}</strong>
+                                const markerMatch = trimmedAuthor.match(/^(.*?)([*†]+)$/);
+                                const baseAuthor = markerMatch
+                                    ? markerMatch[1].trimEnd()
+                                    : trimmedAuthor;
+                                const markers = markerMatch?.[2] ?? "";
+
+                                if (baseAuthor === NAME) {
+                                    return (
+                                        <strong class="font-bold">
+                                            {baseAuthor}{markers && <sup>{markers}</sup>}
+                                        </strong>
+                                    );
+                                }
+
+                                return markers ? (
+                                    <>
+                                        {baseAuthor}<sup>{markers}</sup>
+                                    </>
                                 ) : (
-                                    trimmedAuthor
+                                    baseAuthor
                                 );
                             })
                             .reduce((prev, curr, index) => [
