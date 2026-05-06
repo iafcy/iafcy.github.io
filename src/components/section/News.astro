@@ -1,18 +1,64 @@
 ---
-import mdComponent from "@components/md/components";
-
+import { getCollection } from "astro:content";
 import HeadingWithUnderline from "@components/HeadingWithUnderline.astro";
-import ShowMoreNewsBtn from "@components/ShowMoreNewsBtn.astro";
 
-import { Content } from "@content/news.mdx";
+const news = await getCollection("news");
+
+const newsItems = news.sort((a, b) => {
+    const aTime = new Date(`${a.data.date}T00:00:00`).getTime();
+    const bTime = new Date(`${b.data.date}T00:00:00`).getTime();
+    return bTime - aTime;
+});
+
+const dateFormatter = new Intl.DateTimeFormat("en", {
+    month: "short",
+    year: "numeric",
+});
 ---
 
 <section class="mb-24">
     <HeadingWithUnderline text="News" />
 
-    <div id="news-list" class="mt-4 lg:mt-0">
-        <Content components={mdComponent} />
-    </div>
+    <ul id="news-list">
+        {
+            newsItems.map((item) => {
+                const date = new Date(`${item.data.date}T00:00:00`);
+                const formattedDate = dateFormatter.format(date);
 
-    <ShowMoreNewsBtn transition:persist />
+                return (
+                    <li class="mb-3">
+                        <article class="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
+                            <time
+                                datetime={item.data.date}
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-mizugaki/10 text-mizugaki border border-mizugaki/20 shadow-sm whitespace-nowrap tracking-wider self-start"
+                            >
+                                {formattedDate}
+                            </time>
+
+                            <div class="min-w-0 space-y-1.5">
+                                {item.data.link ? (
+                                    <a
+                                        href={item.data.link}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        class="font-semibold hover:underline decoration-2 underline-offset-4"
+                                    >
+                                        {item.data.title}
+                                    </a>
+                                ) : (
+                                    <p class="font-semibold">{item.data.title}</p>
+                                )}
+
+                                {item.data.description && (
+                                    <p class="text-sm text-sumi/80 dark:text-shironeri/80 leading-relaxed">
+                                        {item.data.description}
+                                    </p>
+                                )}
+                            </div>
+                        </article>
+                    </li>
+                );
+            })
+        }
+    </ul>
 </section>

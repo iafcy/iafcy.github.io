@@ -88,6 +88,7 @@ const publications = defineCollection({
             links: z
                 .object({
                     arxiv: z.string().url().optional(),
+                    preprint: z.string().url().optional(),
                     paper: z.string().url().optional(),
                     code: z.string().url().optional(),
                     website: z.string().url().optional(),
@@ -96,4 +97,24 @@ const publications = defineCollection({
         }),
 });
 
-export const collections = { images, research, workInProgress, education, experience, awards, publications };
+const news = defineCollection({
+    loader: file("src/content/data/news.json"),
+    schema: z.object({
+        id: z.string(),
+        date: z.string(),
+        title: z.string(),
+        description: z.string().optional(),
+        link: z.string().url().optional(),
+    }),
+});
+
+export const collections = {
+    images,
+    research,
+    workInProgress,
+    education,
+    experience,
+    awards,
+    publications,
+    news,
+};

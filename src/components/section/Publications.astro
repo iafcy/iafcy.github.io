@@ -5,10 +5,19 @@ import type { CollectionEntry } from "astro:content";
 import HeadingWithUnderline from "@components/HeadingWithUnderline.astro";
 import YearHeading from "@components/YearHeading.astro";
 
-import { File, Code, Link } from "lucide-react";
+import { ScrollText, Code, Link, FilePen } from "lucide-react";
 import { Icon } from 'astro-icon/components'
+import { normalizeTheLocale } from "astro:i18n";
 
 const NAME = "Yiu-Fai Cheung";
+
+const escapeHtml = (text: string) =>
+    text
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
 
 type PublicationData = CollectionEntry<"publications">["data"];
 type PublicationsByYear = Record<number, PublicationData[]>;
@@ -44,34 +53,15 @@ const years = Object.keys(publicationsByYear)
                         const authors = data.authors
                             .split(",")
                             .map((author) => {
-                                const trimmedAuthor = author.trim();
-                                const markerMatch = trimmedAuthor.match(/^(.*?)([*†]+)$/);
-                                const baseAuthor = markerMatch
-                                    ? markerMatch[1].trimEnd()
-                                    : trimmedAuthor;
-                                const markers = markerMatch?.[2] ?? "";
-
-                                if (baseAuthor === NAME) {
-                                    return (
-                                        <strong class="font-bold">
-                                            {baseAuthor}{markers && <sup>{markers}</sup>}
-                                        </strong>
-                                    );
-                                }
-
-                                return markers ? (
-                                    <>
-                                        {baseAuthor}<sup>{markers}</sup>
-                                    </>
-                                ) : (
-                                    baseAuthor
-                                );
+                                const trimmedAuthor = author.trim().replace(/\s+([*†]+)$/u, "$1");
+                                const markerMatch = trimmedAuthor.match(/^(.*?)([*†]+)$/u);
+                                const authorName = markerMatch ? markerMatch[1].trimEnd() : trimmedAuthor;
+                                const markers = markerMatch?.[2] ? `<sup>${markerMatch[2]}</sup>` : "";
+                                return authorName === NAME
+                                    ? `<strong class=\"font-bold\">${`${authorName}${markers}`}</strong>`
+                                    : `${authorName}${markers}`;
                             })
-                            .reduce((prev, curr, index) => [
-                                prev,
-                                index > 0 ? ", " : "",
-                                curr,
-                            ]);
+                            .join(", ");
 
                         return (
                             <li id={data.id} class="sm:grid sm:grid-cols-3 gap-6 mb-8 items-center scroll-mt-24">
@@ -82,17 +72,27 @@ const years = Object.keys(publicationsByYear)
                                         class="transition duration-300 ease-in-out object-contain hover:scale-105 hover:opacity-85"
                                     />
                                 </div>
-                                <div class="sm:col-span-2 flex flex-col gap-2">
-                                    <h3 class="text-xl font-bold">
+                                <div class="sm:col-span-2 flex flex-col gap-2 text-base">
+                                    <h3 class="text-lg font-bold">
                                         {data.title}
                                     </h3>
-                                    <p>{authors}</p>
-                                    <p class="italic">{data.venue}</p>
+                                    <p set:html={authors} />
+                                    <p class="italic underline">{data.venue}</p>
                                     {data.award && (
                                         <p class="font-bold">{data.award}</p>
                                     )}
 
                                     <div class="flex gap-8 items-center mt-2">
+                                        {data.links?.paper && (
+                                            <a
+                                                href={data.links.paper}
+                                                class="flex items-center gap-2"
+                                            >
+                                                <ScrollText className="h-5 w-5" />
+                                                Paper
+                                            </a>
+                                        )}
+
                                         {data.links?.arxiv && (
                                             <a
                                                 href={data.links.arxiv}
@@ -103,13 +103,13 @@ const years = Object.keys(publicationsByYear)
                                             </a>
                                         )}
 
-                                        {data.links?.paper && (
+                                        {data.links?.preprint && (
                                             <a
-                                                href={data.links.paper}
+                                                href={data.links.preprint}
                                                 class="flex items-center gap-2"
                                             >
-                                                <File className="h-5 w-5" />
-                                                Paper
+                                                <FilePen className="h-5 w-5" />
+                                                Preprint
                                             </a>
                                         )}
 
