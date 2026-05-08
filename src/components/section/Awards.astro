@@ -11,7 +11,7 @@ const awards = await getCollection('awards');
     <ul>
         {
             awards.map(({data}) => (
-                <li class="mb-4 flex flex-row gap-4 items-start"> {/* items-center aligns year with first line of text */}
+                <li class="mb-4 flex flex-row gap-4 items-start">
                     <div class="min-w-[6.5rem] shrink-0 flex justify-center">
                         <span class="w-full bg-mizugaki/10 text-mizugaki dark:text-mizugaki/90 border border-mizugaki/20 px-3 py-1 rounded-full text-xs font-bold tracking-wider shadow-sm text-center">
                             {data.year}

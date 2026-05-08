@@ -7,17 +7,8 @@ import YearHeading from "@components/YearHeading.astro";
 
 import { ScrollText, Code, Link, FilePen } from "lucide-react";
 import { Icon } from 'astro-icon/components'
-import { normalizeTheLocale } from "astro:i18n";
 
 const NAME = "Yiu-Fai Cheung";
-
-const escapeHtml = (text: string) =>
-    text
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
 
 type PublicationData = CollectionEntry<"publications">["data"];
 type PublicationsByYear = Record<number, PublicationData[]>;
@@ -64,7 +55,7 @@ const years = Object.keys(publicationsByYear)
                             .join(", ");
 
                         return (
-                            <li id={data.id} class="sm:grid sm:grid-cols-3 gap-6 mb-8 items-center scroll-mt-24">
+                            <li id={data.id} class="sm:grid sm:grid-cols-3 gap-6 mb-8 items-center scroll-mt-32">
                                 <div class="col-span-1 hidden sm:block rounded-md overflow-hidden">
                                     <Image
                                         src={data.image}

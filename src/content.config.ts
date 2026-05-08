@@ -98,13 +98,9 @@ const publications = defineCollection({
 });
 
 const news = defineCollection({
-    loader: file("src/content/data/news.json"),
+    loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/news" }),
     schema: z.object({
-        id: z.string(),
         date: z.string(),
-        title: z.string(),
-        description: z.string().optional(),
-        link: z.string().url().optional(),
     }),
 });
 
