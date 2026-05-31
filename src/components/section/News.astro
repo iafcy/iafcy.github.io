@@ -20,6 +20,7 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
 <section class="mb-24">
     <HeadingWithUnderline text="News" />
 
+    <!-- <ul class={news.length > 4 ? "max-h-56 overflow-y-auto pr-2" : ""} data-lenis-prevent> -->
     <ul>
         {
             newsItems.map(async (item) => {
@@ -45,3 +46,47 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
         }
     </ul>
 </section>
+
+<!-- <style>
+    ul::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Light mode scrollbar */
+    ul::-webkit-scrollbar-track {
+        background: #f5f1ed;
+        border-radius: 4px;
+        transition: background-color 150ms ease;
+    }
+
+    ul::-webkit-scrollbar-thumb {
+        background: #b9887d;
+        border-radius: 4px;
+        transition: background-color 150ms ease;
+    }
+
+    ul::-webkit-scrollbar-thumb:hover {
+        background: #9f7168;
+    }
+
+    /* Dark mode scrollbar */
+    :global(.dark) ul::-webkit-scrollbar-track {
+        background: #2a2a2a;
+    }
+
+    :global(.dark) ul::-webkit-scrollbar-thumb {
+        background: #b9887d;
+    }
+
+    :global(.dark) ul::-webkit-scrollbar-thumb:hover {
+        background: #d4a09a;
+    }
+
+    ul {
+        scrollbar-color: #b9887d #f5f1ed;
+    }
+
+    :global(.dark) ul {
+        scrollbar-color: #b9887d #2a2a2a;
+    }
+</style> -->
