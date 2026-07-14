@@ -83,7 +83,7 @@ const publications = defineCollection({
             authors: z.string(),
             year: z.number(),
             venue: z.string(),
-            image: image(),
+            image: image().optional(),
             award: z.string().optional(),
             links: z
                 .object({
