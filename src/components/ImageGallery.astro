@@ -7,7 +7,7 @@ const images = await getCollection("images");
 
 <div
     id="gallery"
-    class="columns-1 gap-8 sm:columns-2 sm:gap-8 md:columns-2 lg:columns-3 [&>div:not(:first-child)]:mt-8"
+    class="columns-2 gap-4 sm:columns-2 sm:gap-4 md:columns-3 lg:columns-4 [&>div:not(:first-child)]:mt-4"
 >
     {
         images.map(async ({ data }) => {
