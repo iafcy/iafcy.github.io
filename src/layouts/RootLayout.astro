@@ -20,6 +20,16 @@ const { class: className } = Astro.props;
         <meta name="author" content="Yiu-Fai Cheung">
         
         <ClientRouter />
+
+        <script is:inline>
+            if (
+                localStorage.theme === "dark" ||
+                (!("theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+                document.documentElement.classList.add("dark");
+            }
+        </script>
     </head>
     <body
         class:list={[
