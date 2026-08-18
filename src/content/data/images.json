@@ -1,5 +1,41 @@
 [
     {
+        "id": "DSCF2054",
+        "src": "../../assets/images/DSCF2054.webp",
+        "alt": "World War II Memorial, Washington DC"
+    },
+    
+    {
+        "id": "DSCF1364",
+        "src": "../../assets/images/DSCF1364.webp",
+        "alt": "Constitution Gardens, Washington DC"
+    },
+    {
+        "id": "DSCF1628",
+        "src": "../../assets/images/DSCF1628.webp",
+        "alt": "Smithsonian National Zoological Park, Washington DC"
+    },
+    {
+        "id": "DSCF1350",
+        "src": "../../assets/images/DSCF1350.webp",
+        "alt": "Washington Monument, Washington DC"
+    },
+    {
+        "id": "DSCF1982",
+        "src": "../../assets/images/DSCF1982.webp",
+        "alt": "Arlington National Cemetery, Virginia"
+    },
+    {
+        "id": "DSCF0852",
+        "src": "../../assets/images/DSCF0852.webp",
+        "alt": "United States Capitol, Washington DC"
+    },
+    {
+        "id": "DSCF0583",
+        "src": "../../assets/images/DSCF0583.webp",
+        "alt": "Empire State Building, New York"
+    },
+    {
         "id": "DSCF0117",
         "src": "../../assets/images/DSCF0117.webp",
         "alt": "Broadway, New York"
@@ -33,11 +69,6 @@
         "id": "DSCF9039",
         "src": "../../assets/images/DSCF9039.webp",
         "alt": "Hudson River Waterfront Walkway, Hoboken"
-    },
-    {
-        "id": "DSCF9266",
-        "src": "../../assets/images/DSCF9266.webp",
-        "alt": "World Trade Center, New York"
     },
     {
         "id": "DSCF9209",
