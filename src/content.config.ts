@@ -97,6 +97,16 @@ const publications = defineCollection({
         }),
 });
 
+const teaching = defineCollection({
+    loader: file("src/content/data/teaching.json"),
+    schema: z.object({
+        id: z.number(),
+        year: z.string(),
+        name: z.string(),
+        description: z.string(),
+    }),
+});
+
 const news = defineCollection({
     loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/news" }),
     schema: z.object({
@@ -112,5 +122,6 @@ export const collections = {
     experience,
     awards,
     publications,
+    teaching,
     news,
 };

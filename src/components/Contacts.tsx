@@ -15,7 +15,7 @@ export function Contacts() {
             icon: <Linkedin className="h-7 w-7" />,
         },
         {
-            url: "mailto:yfcheung2@cse.cuhk.edu.hk",
+            url: "mailto:yfcheung@link.cuhk.edu.hk",
             icon: <Mail className="h-7 w-7" />,
         },
     ];
