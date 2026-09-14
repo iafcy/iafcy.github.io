@@ -1,4 +1,5 @@
 import { Mail, Github, Linkedin, GraduationCap } from "lucide-react";
+import type { CSSProperties } from "react";
 
 export function Contacts() {
     const contacts = [
@@ -22,10 +23,16 @@ export function Contacts() {
 
     return (
         <div className="flex justify-center gap-4 flex-row">
-            {contacts.map(contact => (
-                <a href={contact.url} className="h-7 w-7">
-                    {contact.icon}
-                </a>
+            {contacts.map((contact, i) => (
+                <div
+                    key={contact.url}
+                    className="overflow-hidden h-7 contacts-mask"
+                    style={{ "--hero-delay": `${i * 70}ms` } as CSSProperties}
+                >
+                    <a href={contact.url} className="h-7 w-7 block">
+                        {contact.icon}
+                    </a>
+                </div>
             ))}
         </div>
     );

@@ -8,9 +8,11 @@ import ImageGallery from "@components/ImageGallery.astro";
 ---
 
 <MainLayout>
-    <div class="mb-8">
-        <Content components={mdComponent} />
-    </div>
+    <section class="mb-8" data-hero>
+        <div class="hero-text">
+            <Content components={mdComponent} />
+        </div>
+    </section>
 
     <ImageGallery />
 </MainLayout>

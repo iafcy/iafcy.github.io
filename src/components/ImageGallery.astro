@@ -18,7 +18,11 @@ const images = await getCollection("images");
             });
 
             return (
-                <div class="relative overflow-hidden bg-cover bg-no-repeat object-contain h-full rounded-lg">
+                <div
+                    class="relative overflow-hidden bg-cover bg-no-repeat object-contain h-full rounded-lg"
+                    data-reveal
+                    data-stagger
+                >
                     <a
                         href={optimizedImage.src}
                         data-pswp-width={optimizedImage.attributes.width}
@@ -50,6 +54,27 @@ const images = await getCollection("images");
         pswpModule: () => import("photoswipe"),
     });
 
-    document.addEventListener("astro:page-load", () => lightbox.init());
+    let refreshTicking = false;
+    function requestRevealRefresh() {
+        if (refreshTicking) return;
+        refreshTicking = true;
+        requestAnimationFrame(() => {
+            refreshTicking = false;
+            window.dispatchEvent(new Event("astro:reveal-refresh"));
+        });
+    }
+
+    document.addEventListener("astro:page-load", () => {
+        lightbox.init();
+        requestRevealRefresh();
+
+        document.querySelectorAll<HTMLImageElement>("#gallery img").forEach((img) => {
+            if (img.complete) {
+                requestRevealRefresh();
+                return;
+            }
+            img.addEventListener("load", requestRevealRefresh, { once: true });
+        });
+    });
     document.addEventListener("astro:before-swap", () => lightbox.destroy());
 </script>

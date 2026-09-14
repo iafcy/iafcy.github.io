@@ -23,13 +23,17 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
     <!-- <ul class={news.length > 4 ? "max-h-56 overflow-y-auto pr-2" : ""} data-lenis-prevent> -->
     <ul>
         {
-            newsItems.map(async (item) => {
+            newsItems.map(async (item, index) => {
                 const date = new Date(`${item.data.date}T00:00:00`);
                 const formattedDate = dateFormatter.format(date);
                 const { Content } = await render(item);
 
                 return (
-                    <li class="mb-3">
+                    <li
+                        class="mb-3"
+                        data-reveal
+                        style={`--reveal-delay: ${Math.min(index * 70, 350)}ms`}
+                    >
                         <article class="flex flex-col sm:flex-row sm:items-start gap-4">
                             <div class="min-w-[6.5rem] shrink-0 flex justify-start sm:justify-center">
                                 <span class="sm:w-full bg-mizugaki/10 text-mizugaki dark:text-mizugaki/90 border border-mizugaki/20 px-3 py-1 rounded-full text-xs font-bold tracking-wider shadow-sm text-center">

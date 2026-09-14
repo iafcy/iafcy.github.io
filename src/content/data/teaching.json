@@ -2,7 +2,10 @@
     {
         "id": 1,
         "year": "2026",
-        "name": "Teaching Assistant: ENGG1110C Problem Solving by Programming",
-        "description": "CUHK"
+        "role": "Teaching Assistant",
+        "courseCode": "ENGG1110",
+        "courseTitle": "Problem Solving by Programming",
+        "institution": "Faculty of Engineering, CUHK",
+        "url": "https://www.cse.cuhk.edu.hk/wp-content/uploads/academics/ug/Courses/ENGG1110.pdf"
     }
 ]

@@ -8,16 +8,18 @@ import mdComponent from "@components/md/components";
 import { Content } from "@content/intro.mdx";
 ---
 
-<section class="block mb-24 lg:flex lg:items-center">
+<section class="block mb-24 lg:flex lg:items-center" data-hero>
     <div class="w-56 flex-shrink-0 mx-auto mb-16 lg:mb-0 lg:mr-24">
-        <Image
-            src={myImage}
-            alt="A photo of myself"
-            class="w-56 h-56 rounded-full mb-6 border-8 border-mizugaki"
-        />
+        <div class="hero-item" style="--hero-delay: 0ms">
+            <Image
+                src={myImage}
+                alt="A photo of myself"
+                class="w-56 h-56 rounded-full mb-6 border-8 border-mizugaki"
+            />
+        </div>
         <Contacts />
     </div>
-    <div class="mt-4 lg:mt-0">
+    <div class="mt-4 lg:mt-0 hero-text">
         <Content components={mdComponent} />
     </div>
 </section>

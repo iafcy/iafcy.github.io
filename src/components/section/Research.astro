@@ -21,7 +21,11 @@ research.sort(function(a, b) {
                 const { Content } = await render(event);
                 
                 return (
-                    <div id={`research-${index}`}>
+                    <div
+                        id={`research-${index}`}
+                        data-reveal
+                        style={`--reveal-delay: ${Math.min(index * 70, 280)}ms`}
+                    >
                         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
                             <div>
                                 <h3 class="text-xl font-bold">

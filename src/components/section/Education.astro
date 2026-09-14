@@ -21,7 +21,11 @@ education.sort(function (a, b) {
                 const isLast = index === education.length - 1;
 
                 return (
-                    <div class="flex gap-6 relative group">
+                    <div
+                        class="flex gap-6 relative group"
+                        data-reveal
+                        style={`--reveal-delay: ${Math.min(index * 70, 280)}ms`}
+                    >
                         <div class="flex flex-col items-center shrink-0">
                             <div class="w-4 h-4 rounded-full bg-mizugaki z-10" />
                             {!isLast && (

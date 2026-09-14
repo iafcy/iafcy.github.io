@@ -19,12 +19,13 @@ const navItems = [
 ---
 
 <header
-    class="fixed top-0 left-0 right-0 z-40 flex flex-col justify-center items-center h-16 bg-inherit shadow-sm dark:shadow-shironeri/15 shadow-sumi/10"
+    class="fixed top-0 left-0 right-0 z-40 flex flex-col justify-center items-center h-16 bg-inherit shadow-sm dark:shadow-shironeri/15 shadow-sumi/10 overflow-hidden"
     style="view-transition-name: navbar"
 >
-    <nav
-        class="mx-auto max-w-[85rem] w-10/12 md:w-9/12 xl:w-7/12 flex items-center justify-between"
-    >
+    <div class="navbar-reveal h-full w-full flex items-center">
+        <nav
+            class="mx-auto max-w-[85rem] w-10/12 md:w-9/12 xl:w-7/12 flex items-center justify-between"
+        >
         <a href="/"><h1 class="text-2xl font-bold">Yiu-Fai CHEUNG</h1></a>
 
         <div class="flex flex-row items-center gap-3">
@@ -50,5 +51,40 @@ const navItems = [
                 <MobileMenu navItems={navItems} client:load />
             </div>
         </div>
-    </nav>
+        </nav>
+    </div>
 </header>
+
+<style>
+    .navbar-reveal-play {
+        animation: navbar-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes navbar-reveal {
+        from {
+            transform: translateY(-100%);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .navbar-reveal-play {
+            animation: none;
+        }
+    }
+</style>
+
+<script is:inline>
+    if (!window.__navbarRevealed) {
+        window.__navbarRevealed = true;
+        document
+            .querySelector(".navbar-reveal")
+            ?.classList.add("navbar-reveal-play");
+    } else {
+        document
+            .querySelector(".navbar-reveal")
+            ?.classList.remove("navbar-reveal-play");
+    }
+</script>

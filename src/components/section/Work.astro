@@ -22,7 +22,11 @@ experience.sort(function (a, b) {
                 const { Content } = await render(event);
 
                 return (
-                    <div class="flex gap-6 items-center">
+                    <div
+                        class="flex gap-6 items-center"
+                        data-reveal
+                        style={`--reveal-delay: ${Math.min(index * 70, 280)}ms`}
+                    >
                         <div class="hidden md:flex w-36 h-36 bg-shironeri rounded-full items-center justify-center shrink-0 mt-1">
                             <Image
                                 src={event.data.image}

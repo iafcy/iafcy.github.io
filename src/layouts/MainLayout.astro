@@ -16,3 +16,23 @@ import Footer from "@components/Footer.astro";
     
     <Footer />
 </RootLayout>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const hero = document.querySelector("[data-hero]");
+        if (!hero) return;
+
+        const w = window as unknown as { __heroRevealedPage?: string };
+        if (w.__heroRevealedPage === window.location.pathname) return;
+        w.__heroRevealedPage = window.location.pathname;
+
+        const text = hero.querySelector(".hero-text");
+        if (text) {
+            text.querySelectorAll<HTMLElement>(":scope > *").forEach((el, i) => {
+                el.style.setProperty("--hero-delay", `${80 + i * 70}ms`);
+            });
+        }
+
+        hero.classList.add("is-loaded");
+    });
+</script>

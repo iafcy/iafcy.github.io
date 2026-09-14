@@ -44,7 +44,7 @@ export function ThemeToggle() {
                 ],
             },
             {
-                duration: 600,
+                duration: 700,
                 easing: 'cubic-bezier(0.65, 0, 0.35, 1)',
                 pseudoElement: '::view-transition-new(root)',
             }
@@ -58,7 +58,7 @@ export function ThemeToggle() {
                 ],
             },
             {
-                duration: 600,
+                duration: 700,
                 easing: 'cubic-bezier(0.65, 0, 0.35, 1)',
                 pseudoElement: '::view-transition-new(navbar)',
             }

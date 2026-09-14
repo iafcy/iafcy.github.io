@@ -102,8 +102,11 @@ const teaching = defineCollection({
     schema: z.object({
         id: z.number(),
         year: z.string(),
-        name: z.string(),
-        description: z.string(),
+        role: z.string(),
+        courseCode: z.string(),
+        courseTitle: z.string(),
+        institution: z.string(),
+        url: z.string().url().optional(),
     }),
 });
 
