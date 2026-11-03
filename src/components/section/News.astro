@@ -20,77 +20,117 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
 <section class="mb-24">
     <HeadingWithUnderline text="News" />
 
-    <!-- <ul class={news.length > 4 ? "max-h-56 overflow-y-auto pr-2" : ""} data-lenis-prevent> -->
-    <ul>
-        {
-            newsItems.map(async (item, index) => {
-                const date = new Date(`${item.data.date}T00:00:00`);
-                const formattedDate = dateFormatter.format(date);
-                const { Content } = await render(item);
+    <div
+        class="group relative rounded-2xl border border-mizugaki/40 bg-shironeri p-4 dark:bg-sumi dark:shadow-black/35 sm:p-6"
+        data-news-panel
+        data-at-top
+        data-at-bottom
+    >
+        <div class="relative">
+            <ul
+                id="news-list"
+                class="news-scroller max-h-[18rem] space-y-3 overflow-y-auto overscroll-contain pr-2 sm:max-h-[24rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mizugaki focus-visible:ring-offset-2 focus-visible:ring-offset-shironeri dark:focus-visible:ring-offset-sumi"
+                data-lenis-prevent
+                role="region"
+                aria-label="News updates"
+                tabindex="0"
+            >
+                {
+                    newsItems.map(async (item, index) => {
+                        const date = new Date(`${item.data.date}T00:00:00`);
+                        const formattedDate = dateFormatter.format(date);
+                        const { Content } = await render(item);
 
-                return (
-                    <li
-                        class="mb-3"
-                        data-reveal
-                        style={`--reveal-delay: ${Math.min(index * 70, 350)}ms`}
-                    >
-                        <article class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <div class="min-w-[6.5rem] shrink-0 flex justify-start sm:justify-center">
-                                <span class="sm:w-full bg-mizugaki/10 text-mizugaki dark:text-mizugaki/90 border border-mizugaki/20 px-3 py-1 rounded-full text-xs font-bold tracking-wider shadow-sm text-center">
-                                    {formattedDate}
-                                </span>
-                            </div>
-                            <div class="min-w-0 [&>*]:mt-0">
-                                <Content components={mdComponent} />
-                            </div>
-                        </article>
-                    </li>
-                );
-            })
-        }
-    </ul>
+                        return (
+                            <li
+                                data-reveal
+                                style={`--reveal-delay: ${Math.min(index * 70, 350)}ms`}
+                            >
+                                <article class="flex flex-col sm:flex-row sm:items-start gap-4">
+                                    <div class="min-w-[6.5rem] shrink-0 flex justify-start sm:justify-center">
+                                        <span class="sm:w-full bg-mizugaki/10 text-mizugaki dark:text-mizugaki/90 border border-mizugaki/20 px-3 py-1 rounded-full text-xs font-bold tracking-wider shadow-sm text-center">
+                                            {formattedDate}
+                                        </span>
+                                    </div>
+                                    <div class="min-w-0 [&>*]:mt-0">
+                                        <Content components={mdComponent} />
+                                    </div>
+                                </article>
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+
+            <div
+                aria-hidden="true"
+                class="pointer-events-none absolute left-0 right-2 top-0 z-[1] h-6 bg-gradient-to-b from-shironeri to-transparent opacity-100 transition-opacity duration-200 group-data-[at-top]:opacity-0 dark:from-sumi motion-reduce:transition-none"
+            />
+            <div
+                aria-hidden="true"
+                class="pointer-events-none absolute bottom-0 left-0 right-2 z-[1] h-6 bg-gradient-to-t from-shironeri to-transparent opacity-100 transition-opacity duration-200 group-data-[at-bottom]:opacity-0 dark:from-sumi motion-reduce:transition-none"
+            />
+        </div>
+    </div>
 </section>
 
-<!-- <style>
-    ul::-webkit-scrollbar {
-        width: 8px;
+<script>
+    let cleanupNewsScroller: (() => void) | undefined;
+
+    function setupNewsScroller() {
+        cleanupNewsScroller?.();
+        cleanupNewsScroller = undefined;
+
+        const scroller = document.getElementById("news-list");
+        const panel = scroller?.closest<HTMLElement>("[data-news-panel]");
+        if (!scroller || !panel) return;
+
+        const viewportBottom =
+            scroller.getBoundingClientRect().top + scroller.clientHeight;
+        let revealIndex = 0;
+
+        scroller.querySelectorAll<HTMLElement>(":scope > li").forEach((item) => {
+            const isInitiallyVisible =
+                item.getBoundingClientRect().top < viewportBottom;
+
+            if (isInitiallyVisible) {
+                item.setAttribute("data-reveal", "");
+                item.style.setProperty(
+                    "--reveal-delay",
+                    `${Math.min(revealIndex * 70, 350)}ms`
+                );
+                revealIndex += 1;
+            } else {
+                item.removeAttribute("data-reveal");
+                item.style.removeProperty("--reveal-delay");
+            }
+        });
+
+        const controller = new AbortController();
+
+        const updateShadows = () => {
+            const atTop = scroller.scrollTop <= 1;
+            const atBottom =
+                scroller.scrollTop + scroller.clientHeight >=
+                scroller.scrollHeight - 1;
+
+            panel.toggleAttribute("data-at-top", atTop);
+            panel.toggleAttribute("data-at-bottom", atBottom);
+        };
+
+        scroller.addEventListener("scroll", updateShadows, {
+            passive: true,
+            signal: controller.signal,
+        });
+        window.addEventListener("resize", updateShadows, {
+            passive: true,
+            signal: controller.signal,
+        });
+
+        cleanupNewsScroller = () => controller.abort();
+
+        requestAnimationFrame(updateShadows);
     }
 
-    /* Light mode scrollbar */
-    ul::-webkit-scrollbar-track {
-        background: #f5f1ed;
-        border-radius: 4px;
-        transition: background-color 150ms ease;
-    }
-
-    ul::-webkit-scrollbar-thumb {
-        background: #b9887d;
-        border-radius: 4px;
-        transition: background-color 150ms ease;
-    }
-
-    ul::-webkit-scrollbar-thumb:hover {
-        background: #9f7168;
-    }
-
-    /* Dark mode scrollbar */
-    :global(.dark) ul::-webkit-scrollbar-track {
-        background: #2a2a2a;
-    }
-
-    :global(.dark) ul::-webkit-scrollbar-thumb {
-        background: #b9887d;
-    }
-
-    :global(.dark) ul::-webkit-scrollbar-thumb:hover {
-        background: #d4a09a;
-    }
-
-    ul {
-        scrollbar-color: #b9887d #f5f1ed;
-    }
-
-    :global(.dark) ul {
-        scrollbar-color: #b9887d #2a2a2a;
-    }
-</style> -->
+    document.addEventListener("astro:page-load", setupNewsScroller);
+</script>

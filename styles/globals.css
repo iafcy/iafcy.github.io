@@ -119,6 +119,37 @@
     @apply list-disc pl-6;
 }
 
+.news-scroller {
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+}
+
+.news-scroller::-webkit-scrollbar {
+    width: 6px;
+}
+
+.news-scroller::-webkit-scrollbar-track {
+    background: rgba(185, 136, 125, 0.08);
+    border-radius: 9999px;
+}
+
+.news-scroller::-webkit-scrollbar-thumb {
+    background-color: rgba(185, 136, 125, 0.6);
+    border-radius: 9999px;
+}
+
+.news-scroller::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(185, 136, 125, 0.85);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    .news-scroller {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(185, 136, 125, 0.6)
+            rgba(185, 136, 125, 0.08);
+    }
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -132,6 +163,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .news-scroller {
+        scroll-behavior: auto;
+    }
+
     .heading-underline__bar,
     .year-line {
         animation: none;

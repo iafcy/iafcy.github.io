@@ -1,5 +1,16 @@
 [
     {
+        "id": "cheung2026illusion",
+        "title": "Illusion: Safeguarding Topology Confidentiality in LLM Multi-Agent Systems via Behavior-Preserving Obfuscation",
+        "authors": "Yiu-Fai Cheung, Hongzhi Guo, Miao Pan, Irwin King, Hao Wang",
+        "year": 2026,
+        "venue": "Under review",
+        "image": "../../assets/publications/cheung2026illusion.webp",
+        "links": {
+            "arxiv": "https://arxiv.org/abs/2611.00923"
+        }
+    },
+    {
         "id": "cheung2026mentalmeta",
         "title": "The Efficacy of Large Language Model-based Interventions for Mental Health Outcomes: A Systematic Review and Meta-Analysis",
         "authors": "Yiu-Fai Cheung†, Chenxu Yu†, Kao-Jung Chang†, Guozheng Wu, Hsin-Yu Wu, Yu-Tien Hsu, Xinjie Zhang, Wei Chiu, Yu-Chieh Ko, Albert C. Yang, Wenxuan Wang*, Wenting Chen*, Qin Jin",
